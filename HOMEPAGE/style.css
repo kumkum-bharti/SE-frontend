@@ -10,7 +10,8 @@
     height: 60px;
     display: flex;
     justify-content: space-evenly;
-    background-color: #98D8EF;
+    background-color: #aa88e0;
+    background-color: #F5EFFF;
     color:black;
 
     
@@ -138,7 +139,8 @@
 }
   .icons-container {
     margin-top:5px;
-    background-color:#8cdbf8;
+    /* background-color:#8cdbf8; */
+    background-color:#F5EFFF;
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
@@ -194,3 +196,71 @@
   .card a:hover {
       background: #0056b3;
   }
+
+  .footer {
+    background-color: #1a202c;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .foot_container {
+    display: flex;
+    height: 0.8%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-section {
+    max-width: 400px;
+    text-align: center;
+  }
+  .footer-section h2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .footer-section p {
+    color: #a0aec0;
+    font-size: 14px;
+  }
+  .social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  .social-links a {
+    color: #a0aec0;
+    font-size: 20px;
+    transition: color 0.3s;
+  }
+  .social-links a:hover {
+    color: white;
+  }
+  .footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid #2d3748;
+    padding-top: 10px;
+    font-size: 12px;
+    color: #a0aec0;
+  }
+
+  .footer-section ul li {
+    margin-bottom: 5px;
+  }
+  
+  /* Styling for large screens */
+  @media (min-width: 768px) {
+    .footer-section ul {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .footer-section ul li {
+      display:inline-block;  
+      margin-bottom: 0;
+      padding: 3%;
+    }
+} 
+
+
+
+  
