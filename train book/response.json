@@ -1,0 +1,33 @@
+[
+    {
+        "id":1,
+        "name":"The Alchemist",
+        "author":"Paulo Coelho",
+        "price":200,
+        "rating":4.5,
+        "image":"https://images-na.ssl-images-amazon.com/images/I/41aM3Z+eUQL._SX324_BO1,204,203,200_.jpg",
+        "link":"https://www.amazon.in/Alchemist-Paulo-Coelho/dp/8172234988"
+    },
+
+    {
+        "id":2,
+        "name":"The Monk Who Sold His Ferrari",
+        "author":"Robin Sharma",
+        "price":250,
+        "rating":4.3,
+        "image":"https://images-na.ssl-images-amazon.com/images/I/41aM3Z+eUQL._SX324_BO1,204,203,200_.jpg",
+        "link":"https://www.amazon.in/Monk-Who-Sold-His-Ferrari/dp/8179921624"
+    },
+
+    {
+        "id":3,
+        "name":"The Power of Your Subconscious Mind",
+        "author":"Joseph Murphy",
+        "price":150,
+        "rating":4.2,
+        "image":"https://images-na.ssl-images-amazon.com/images/I/41aM3Z+eUQL._SX324_BO1,204,203,200_.jpg",
+        "link":"https://www.amazon.in/Power-Your-Subconscious-Mind/dp/8192910962"
+    }
+
+
+]
