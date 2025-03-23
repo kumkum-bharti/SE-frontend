@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Search | JetCartStay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #eadcf8; /* Purple shade */
+            padding: 15px;
+        }
+        .navbar-brand {
+            color: black !important;
+            font-weight: bold;
+        }
+        .search-bar {
+            max-width: 40%;
+        }
+        .train-container {
+            margin-top: 20px;
+            
+            
+        }
+        .train-card {
+            background: #a7a6a6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            height: 90%;
+            width: 99%;
+            
+        }
+        
+        .train-card:hover {
+            transform: scale(1.02);
+        }
+        .train-card img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="navbar-brand" >JetCartStay</div>
+            <form class="d-flex ms-auto search-bar">
+                <input id="queryInput" class="form-control me-2" type="text" placeholder="Search trains...">
+                <button onclick="fetchData()" class="btn btn-light">Search</button>
+            </form>
+            <div class="ms-3 text-black">Logged In</div>
+            <button class="btn btn-outline-light ms-3 text-black">Wishlist</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="results" class="train-container row justify-content-center  "></div>
+    </div>
+
+    <script>
+        const defaultTrains = [
+            {
+                "trainNumber": "12345",
+                "trainName": "Shatabdi Express",
+                "source": "New Delhi",
+                "destination": "Chandigarh",
+                "departureTime": "06:00 AM",
+                "arrivalTime": "09:00 AM"
+            },
+            {
+                "trainNumber": "67890",
+                "trainName": "Rajdhani Express",
+                "source": "New Delhi",
+                "destination": "Mumbai",
+                "departureTime": "04:00 PM",
+                "arrivalTime": "08:00 AM"
+            },
+            {
+        "trainNumber": "11223",
+        "trainName": "Duronto Express",
+        "source": "Kolkata",
+        "destination": "Delhi",
+        "departureTime": "07:30 PM",
+        "arrivalTime": "10:00 AM"
+    },
+    {
+        "trainNumber": "44556",
+        "trainName": "Garib Rath Express",
+        "source": "Bangalore",
+        "destination": "Chennai",
+        "departureTime": "08:15 AM",
+        "arrivalTime": "01:00 PM"
+    },
+    {
+        "trainNumber": "78901",
+        "trainName": "Jan Shatabdi Express",
+        "source": "Mumbai",
+        "destination": "Goa",
+        "departureTime": "06:45 AM",
+        "arrivalTime": "02:30 PM"
+    }
+        ];
+
+        async function fetchData() {
+            const query = document.getElementById("queryInput").value.trim();
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = `<div class="loading"><span class="spinner-border spinner-border-sm"></span> Loading...</div>`;
+
+            if (!query) {
+                displayTrains(defaultTrains);
+                return;
+            }
+
+            try {
+                const apiUrl = ``; // Add API URL
+                const response = await fetch(apiUrl, {
+                    method: "GET",
+                    headers: { "ngrok-skip-browser-warning": "0" }
+                });
+                const data = await response.json();
+
+                if (!data || !data.length) {
+                    resultsContainer.innerHTML = "<p class='text-center'>No trains found</p>";
+                    return;
+                }
+                displayTrains(data);
+            } catch (error) {
+                console.error("Error: ", error);
+                resultsContainer.innerHTML = "<p class='text-center text-danger'>Failed to fetch data</p>";
+            }
+        }
+
+        function displayTrains(trains) {
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "";
+            trains.forEach(train => {
+                const div = document.createElement("div");
+                div.classList.add("col-md-6", "col-lg-4"  );
+                div.innerHTML = `
+                    <div class="train-card d-flex align-items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4540/4540243.png" alt="Train Image">
+                        <div>
+                            <h5>${train.trainName}</h5>
+                            <p>Train No: ${train.trainNumber}</p>
+                            <p><strong>${train.source}</strong> ➝ <strong>${train.destination}</strong></p>
+                            <p>Dep: ${train.departureTime} | Arr: ${train.arrivalTime}</p>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.appendChild(div);
+            });
+        }
+
+        window.onload = () => {
+            displayTrains(defaultTrains);
+        }
+    </script>
+
+</body>
+</html>
