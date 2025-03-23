@@ -185,21 +185,5 @@ async function loginUser() {
 
 
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const passwordField = document.getElementById("password");
-    const eyeIcon = document.getElementById("eye-icon");
 
-    eyeIcon.addEventListener("click", function() {
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            eyeIcon.src = "https://cdn-icons-png.flaticon.com/512/159/159604.png"; 
-        } else {
-            passwordField.type = "password";
-            eyeIcon.src = "https://cdn-icons-png.flaticon.com/512/709/709612.png"; 
-        }
-    });
-});
-
-</script>
 </html>
