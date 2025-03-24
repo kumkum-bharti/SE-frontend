@@ -15,6 +15,17 @@
             background-color: #eadcf8;
             padding: 10px;
         }
+
+        .user-icon{
+        margin-left:3rem;
+        }
+
+
+        .user-icon img{
+        height: 25px;
+        width: 25px;
+        }
+
         .search-bar {
             width: 40%;
         }
@@ -94,7 +105,9 @@
         <div class="ms-3 fw-bold fs-4">JetCartStay</div>
         <input id="queryInput" class="form-control search-bar" type="text" placeholder="Search...">
         <button onclick="fetchData()" class="btn btn-primary">Search</button>
-        <div>logged in</div>
+        <div class="user-icon" id="loginButton">
+            <a href="/LOGIN/login.html" ><img src="https://cdn-icons-png.flaticon.com/128/456/456212.png" alt="User"></a>
+        </div>
         <button class="btn btn-outline-dark">Wishlist</button>
     </nav>
     <div class="container">
@@ -103,8 +116,65 @@
     
     <script>
         const defaultProducts = [
-            { "title": "adidas Men Socks", "price": "₹349", "rating": "4.1", "url": "https://www.amazon.in/dp/B09RWL4VQK", "imageUrl": "https://m.media-amazon.com/images/I/71V4YnALSxL._AC_UL960_FMwebp_QL65_.jpg" },
-            { "title": "adidas Men Polyamid Crew Socks", "price": "₹359", "rating": "3", "url": "https://www.amazon.in/dp/B0BW93WD61", "imageUrl": "https://m.media-amazon.com/images/I/71+iXsWGX+L._AC_UL960_FMwebp_QL65_.jpg" },
+        {
+        "title": "Vector X Waterproof Portable Multicolour Treking/Capmping/Outdoor Dome Camping Tent for Travel,Picnic,Hiking, Trekking Portable Big Dome Tent House Inflatable Tent for Camping (200 x 120 x 105 cm)",
+        "price": "₹979.04",
+        "rating": null,
+        "url": "https://www.amazon.in/dp/B09WVJNK14",
+        "imageUrl": "https://m.media-amazon.com/images/I/51G5vTxWy2L._AC_UL960_FMwebp_QL65_.jpg"
+    },
+    {
+        "title": "Egab Picnic Camping Portable Polyester Tent (2 Person, Multicolor)",
+        "price": "₹990",
+        "rating": "3.7",
+        "url": "https://www.amazon.in/dp/B07DPQRDNS",
+        "imageUrl": "https://m.media-amazon.com/images/I/61uu-q3vTFL._AC_UL960_FMwebp_QL65_.jpg"
+    },
+    {
+        "title": "BRUTON Fitman Shoes, Casual, Daily Use, Correct Shoes for Men",
+        "price": "₹198",
+        "rating": "3.1",
+        "url": "https://www.amazon.in/dp/B09RSYYPXP",
+        "imageUrl": "https://m.media-amazon.com/images/I/31rglcZV36L._AC_UL960_FMwebp_QL65_.jpg"
+    },
+    {
+        "title": "BRUTON Men&#x27;s Sneakers Loafers Shoes - (Pack of 1) Grey, Size -8",
+        "price": "₹198",
+        "rating": "3.2",
+        "url": "https://www.amazon.in/dp/B0CGJGZ7QR",
+        "imageUrl": "https://m.media-amazon.com/images/I/61t4H2+hjZL._AC_UL960_FMwebp_QL65_.jpg"
+    },   
+
+    {
+        "title": "AG Enterprises Adjustable Dual Colour Reflective Jacket for Construction, Traffic, Cycling, Ramp Vests High Visibility for Men and Women Reflective Vest Belt Strip | (Blue Black)",
+        "price": "₹199",
+        "rating": "5",
+        "url": "https://www.amazon.in/dp/B09S613N78",
+        "imageUrl": "https://m.media-amazon.com/images/I/41efYtjeRhL._AC_UL960_FMwebp_QL65_.jpg"
+    },
+    {
+        "title": "AGAM ENTERPRISES Reflective Safety Jacket 3 side open Free size High Visibility for Construction Worker,Traffic Safety,Cycling and running_01",
+        "price": "₹215",
+        "rating": null,
+        "url": "https://www.amazon.in/dp/B0DPG4GVC4",
+        "imageUrl": "https://m.media-amazon.com/images/I/414C4NA16BL._AC_UL866_FMwebp_QL65_.jpg"
+    },
+
+    {
+        "title": "CELLEBII® Nylon Rain &amp; Dust Cover Waterproof with Pouch for Laptop Bags and Backpacks, School Bag Cover, Luggage Bag Cover-Black",
+        "price": "₹149",
+        "rating": "3.1",
+        "url": "https://www.amazon.in/dp/B0C8191LJ1",
+        "imageUrl": "https://m.media-amazon.com/images/I/51V2PpFdE3L._AC_UY654_FMwebp_QL65_.jpg"
+    },
+    {
+        "title": "NM Enterprises Heavy Waterproof Nylon Rain Cover/Dust Cover - Elastic Adjustable for Laptop Bags and Backpacks, School Bag Waterproof Cover, Dust Proof, Backpack, Laptop Bag Cover (1Pc)",
+        "price": "₹179",
+        "rating": null,
+        "url": "https://www.amazon.in/dp/B0D9HD8S7S",
+        "imageUrl": "https://m.media-amazon.com/images/I/41axm7aMynL._AC_UY654_FMwebp_QL65_.jpg"
+    },
+           
             { "title": "adidas Mens No Show Socks", "price": "₹379", "rating": "4.6", "url": "https://www.amazon.in/dp/B0BQWPSDN8", "imageUrl": "https://m.media-amazon.com/images/I/615DPno1wCL._AC_UL960_FMwebp_QL65_.jpg" },
             { "title": "adidas Unisex Ankle Socks", "price": "₹395", "rating": "3.9", "url": "https://www.amazon.in/dp/B0BGZPS9CQ", "imageUrl": "https://m.media-amazon.com/images/I/71FrbzI87YL._AC_UL960_FMwebp_QL65_.jpg" }
         ];
@@ -132,6 +202,37 @@
                 `;
                 resultsContainer.appendChild(div);
             });
+        }
+
+            async function fetchData() {
+            const query = document.getElementById("queryInput").value.trim();
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "<p>Loading...</p>";
+    
+            if (!query) {
+                displayProducts(defaultProducts);
+                return;
+            }
+    
+            try {
+                const apiUrl = localStorage.getItem("baseUrl")+`api/v1.0/products/search/${query}`;
+    
+                const response = await fetch(apiUrl, {
+                    method: "GET",
+                    headers: { "ngrok-skip-browser-warning": "0" }
+                });
+    
+                const data = await response.json();
+                if (!data || data.length === 0) {
+                    resultsContainer.innerHTML = "<p>No results found.</p>";
+                    return;
+                }
+                displayProducts(data);
+            } catch (error) {
+                resultsContainer.innerHTML = "<p>Error fetching data.</p>";
+            }
+        }
+        
 
             // Add event listeners to all wishlist icons
             document.querySelectorAll(".wishlist-icon").forEach(icon => {
@@ -148,7 +249,7 @@
             });
 
             
-        }
+        
 
         window.onload = () => displayProducts(defaultProducts);
     </script>

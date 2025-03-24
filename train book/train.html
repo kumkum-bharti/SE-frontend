@@ -18,6 +18,17 @@
             color: black !important;
             font-weight: bold;
         }
+
+        .user-icon{
+        margin-left:3rem;
+        }
+
+
+        .user-icon img{
+        height: 25px;
+        width: 25px;
+        }
+
         .search-bar {
             max-width: 40%;
         }
@@ -62,7 +73,9 @@
                 <input id="queryInput" class="form-control me-2" type="text" placeholder="Search trains...">
                 <button onclick="fetchData()" class="btn btn-light">Search</button>
             </form>
-            <div class="ms-3 text-black">Logged In</div>
+            <div class="user-icon" id="loginButton">
+                <a href="/LOGIN/login.html" ><img src="https://cdn-icons-png.flaticon.com/128/456/456212.png" alt="User"></a>
+            </div>
             <button class="btn btn-outline-light ms-3 text-black">Wishlist</button>
         </div>
     </nav>
