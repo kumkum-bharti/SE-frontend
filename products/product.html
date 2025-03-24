@@ -78,26 +78,8 @@
             border-radius: 5px;
             font-size: 14px;
         }
-        .wishlist-icon {
-            font-size: 20px;
-            cursor: pointer;
-            color: #888;
-            transition: color 0.3s;
-        }
-        .wishlist-icon.active {
-            color: red;
-        }
-        .wishlist-popup {
-            position: absolute;
-            bottom: 35px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            display: none;
-        }
+       
+        
     </style>
 </head>
 <body>
@@ -108,7 +90,7 @@
         <div class="user-icon" id="loginButton">
             <a href="/LOGIN/login.html" ><img src="https://cdn-icons-png.flaticon.com/128/456/456212.png" alt="User"></a>
         </div>
-        <button class="btn btn-outline-dark">Wishlist</button>
+        <button class="btn btn-outline-dark" onclick="window.location.href='/dashboard/db.html'"">Wishlist</button>
     </nav>
     <div class="container">
         <div id="results" class="product-container"></div>
@@ -194,11 +176,11 @@
                             <span>⭐ ${product.rating || "N/A"}</span>
                         
                         </div>
-                         <div class="wishlist-container">
-                    <i class="wishlist-icon far fa-heart" ></i>
-                    <span class="wishlist-message"></span>
-                </div>
-                    </div>
+                        <div class="wishlist-container">
+                         <i class="wishlist-icon far fa-heart" ></i>
+                         
+                        </div>
+               
                 `;
                 resultsContainer.appendChild(div);
             });
