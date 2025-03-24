@@ -7,7 +7,7 @@ burger.addEventListener('click', () => {
     cont.classList.toggle('contdrop');
 });
 
-const baseUrl="https://fc0c-14-139-254-36.ngrok-free.app/";
+const baseUrl="https://0aba-14-139-254-36.ngrok-free.app/";
 
 localStorage.setItem("baseUrl", baseUrl);
 

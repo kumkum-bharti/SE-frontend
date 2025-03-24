@@ -216,20 +216,23 @@
         }
         
 
-            // Add event listeners to all wishlist icons
-            document.querySelectorAll(".wishlist-icon").forEach(icon => {
-                const hearticon=document.querySelector(".wishlist-icon");
-                const wishlistPopup = document.querySelector(".wishlist-popup");
-                icon.addEventListener("click", function() {
-                    hearticon.classList.toggle("active");
-                    wishlishtPopup.style.display = "block";
-                    setTimeout(() => {
-                        hearticon.classList.remove("active");
-                        wishlistPopup.style.display = "none";
-                    }, 2000);
-                });
-            });
+        document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("wishlist-icon")) {
+                    const isLoggedIn=localStorage.getItem("isLoggedIn")=="true";
+                    if(!isLoggedIn){
+                        alert("Please login to add to wishlist");
+                        return;
+                    }
 
+                    const product = e.target.closest(".product-card");
+                    const title = product.querySelector(".product-title").textContent;
+                    const url = product.querySelector(".product-title a").href;
+                    const user = JSON.parse(localStorage.getItem("user")) || { name: "Guest", wishlist: [] };
+                    user.wishlist.push({title, url});
+                    localStorage.setItem("user", JSON.stringify(user));
+                    alert("Added to wishlist!");
+                }
+            });
             
         
 
