@@ -7,7 +7,7 @@ burger.addEventListener('click', () => {
     cont.classList.toggle('contdrop');
 });
 
-const baseUrl="https://ba93-14-139-254-36.ngrok-free.app/";
+const baseUrl="https://fc0c-14-139-254-36.ngrok-free.app/";
 
 localStorage.setItem("baseUrl", baseUrl);
 
@@ -26,6 +26,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Logout Function
 function logoutUser() {
-    localStorage.removeItem("isLoggedIn");
-    window.location.reload(); // Reload to update UI
+    window.location.href="/dashboard/db.html" // Reload to update UI
 }

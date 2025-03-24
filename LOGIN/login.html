@@ -159,25 +159,19 @@ async function loginUser() {
         },
         body: JSON.stringify(userData)
     });
-    const response2 = await fetch(localStorage.getItem("baseUrl")+"api/v1.0/welcome", {
-        method: "GET",
-        headers: { "Content-Type": "application/json",
-             "ngrok-skip-browser-warning": "69420"
-         },
-       
-    });
 
-    const data2 = await response2;
-    console.log(data2);
-    const data = await response.json();
+    const data = await response.json(); // Parse response body as JSON
     
     if (response.ok) {
         console.log(data);
         localStorage.setItem("token", data.token); // Save token
         alert("Login successful!");
-        window.location.href="#";
-    } else {
-        alert(`Error: ${data.message}`);
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href="/HOMEPAGE/home.html";
+    } else if(response.status == 400) {
+        console.log(data);
+        alert(`Error: ${data.Message}`);
+        window.location.href="/LOGIN/login.html";
     }
 }
 
