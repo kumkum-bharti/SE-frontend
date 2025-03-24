@@ -11,7 +11,7 @@ class UserDetails {
         userId, 
         role , 
         gender,
-        favoriteProducts = [] // Default to an empty array
+        favorites = [] // Default to an empty array
     }) {
         this._id = _id;
         this.firstName = firstName || '';
@@ -24,7 +24,7 @@ class UserDetails {
         this.userId = userId || '';
         this.role = role;
         this.gender = gender || '';
-        this.favoriteProducts = favoriteProducts;
+        this.favorites = favorites;
     }
 }
 

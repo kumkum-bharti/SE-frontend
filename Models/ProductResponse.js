@@ -18,4 +18,14 @@ class ProductResponse {
     }
 }
 
-module.exports = ProductResponse;
+
+class FavoriteProduct{
+    constructor(name,link){
+        this.name=name;
+        this.link=link;
+        
+    }
+}
+
+module.exports = {ProductResponse , FavoriteProduct};
+

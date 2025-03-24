@@ -67,26 +67,8 @@
             border-radius: 5px;
             font-size: 14px;
         }
-        .wishlist-icon {
-            font-size: 20px;
-            cursor: pointer;
-            color: #888;
-            transition: color 0.3s;
-        }
-        .wishlist-icon.active {
-            color: red;
-        }
-        .wishlist-popup {
-            position: absolute;
-            bottom: 35px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            display: none;
-        }
+       
+        
     </style>
 </head>
 <body>
@@ -94,8 +76,8 @@
         <div class="ms-3 fw-bold fs-4">JetCartStay</div>
         <input id="queryInput" class="form-control search-bar" type="text" placeholder="Search...">
         <button onclick="fetchData()" class="btn btn-primary">Search</button>
-        <div>logged in</div>
-        <button class="btn btn-outline-dark">Wishlist</button>
+        
+        <button class="btn btn-outline-dark" onclick="window.location.href='/dashboard/db.html'">Wishlist</button>
     </nav>
     <div class="container">
         <div id="results" class="product-container"></div>
@@ -124,31 +106,45 @@
                             <span>⭐ ${product.rating || "N/A"}</span>
                         
                         </div>
-                         <div class="wishlist-container">
-                    <i class="wishlist-icon far fa-heart" ></i>
-                    <span class="wishlist-message"></span>
-                </div>
-                    </div>
+                        <div class="wishlist-container">
+                         <i class="wishlist-icon far fa-heart" ></i>
+                         
+                        </div>
+               
                 `;
                 resultsContainer.appendChild(div);
             });
 
-            // Add event listeners to all wishlist icons
-            document.querySelectorAll(".wishlist-icon").forEach(icon => {
-                const hearticon=document.querySelector(".wishlist-icon");
-                const wishlistPopup = document.querySelector(".wishlist-popup");
-                icon.addEventListener("click", function() {
-                    hearticon.classList.toggle("active");
-                    wishlishtPopup.style.display = "block";
-                    setTimeout(() => {
-                        hearticon.classList.remove("active");
-                        wishlistPopup.style.display = "none";
-                    }, 2000);
-                });
+            document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("wishlist-icon")) {
+                    const isLoggedIn=localStorage.getItem("isLoggedIn")=="true";
+                    if(!isLoggedIn){
+                        alert("Please login to add to wishlist");
+                        return;
+                    }
+
+                    const product = e.target.closest(".product-card");
+                    const title = product.querySelector(".product-title").textContent;
+                    const url = product.querySelector(".product-title a").href;
+                    const user = JSON.parse(localStorage.getItem("user")) || { name: "Guest", wishlist: [] };
+                    user.wishlist.push({title, url});
+                    localStorage.setItem("user", JSON.stringify(user));
+                    alert("Added to wishlist!");
+                }
             });
+                
+            
+
+
 
             
-        }
+    }
+
+            
+        
+
+
+        
 
         window.onload = () => displayProducts(defaultProducts);
     </script>

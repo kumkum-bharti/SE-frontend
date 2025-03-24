@@ -13,14 +13,14 @@ localStorage.setItem("baseUrl", baseUrl);
 
 document.addEventListener("DOMContentLoaded", function () {
     const loginButton = document.getElementById("loginButton");
-    const logoutButton = document.getElementById("logoutButton");
+    const dashboardButton = document.getElementById("dashboardButton");
 
     if (localStorage.getItem("isLoggedIn") === "true") {
         loginButton.style.display = "none";  // Hide login button
-        logoutButton.style.display = "block"; // Show logout button
+        dashboardButton.style.display = "block"; // Show logout button
     } else {
         loginButton.style.display = "block";
-        logoutButton.style.display = "none";
+        dashboardButton.style.display = "none";
     }
 });
 
