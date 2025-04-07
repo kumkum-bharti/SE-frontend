@@ -1,129 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg,  #b27ce7, #445ecd);
+        }
+        .signup-container {
+            display: flex;
+            width: 800px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .form-section {
+            flex: 1;
+            padding: 40px;
+        }
+        .info-section {
+            flex: 1;
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+        .form-control {
+            border-radius: 8px;
+        }
+        .btn-primary {
+            width: 100%;
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+</style>
+      
 
-    <style>
-    header{
-    
-    height: 60px;
-    display: flex;
-    justify-content: space-evenly;
-    background-color: #F5EFFF;
-    color:black;
-}
-
-.logo{
-    margin-top:10px;
-    color:rgb(0, 0, 0);
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-
-
-.navbar{
-    display: flex;
-    align-items: center;
-    /* font-family:Georgia, 'Times New Roman', Times, serif; */
-
-}
-
-.navlinks li{
-    display: inline-block;
-    padding: 5px 25px;
-}
-
-.navlinks a{
-    text-decoration: none;
-    transition:  color 0.3s ease;
-    color:black;
-    font-size: 1rem;
-
-}
-
-.navlinks a:hover{
-    color:black;
-    padding: 3px;
-    border: 1px solid black;
-}
-
-    </style>
+<script src="../loadConfigs.js"></script>
 </head>
-<body style="background: rgb(69,70,64);
-background: linear-gradient(15deg, rgba(69,70,64,1) 0%, rgba(188,163,182,1) 100%, rgba(185,162,182,1) 100%);">
-  <header>
-    <div class="logo">JetCartStay</div>
-      <nav class="navbar">
-     <ul class="navlinks">
-         <li><a href="home.html">Home</a></li>
-         <li><a href="">About</a></li>
-         
-     </ul>
-     
- </nav>
-</header>
-    <div class="container" style="max-width: 400px; background-color: #bbd3eb; margin-top: 5rem; padding: 2rem; line-height: 2rem; border-radius: 25px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);">
-        <h1 class="text-center">Sign Up</h1>
-        <form id ="signup" action="/HOMEPAGE/home.html" method="POST">
-            <div class="mb-3">
-                <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" required>
-            </div>
-            <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required>
-            </div>
-            <div class="mb-3">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" required>
-            </div>
-            <p id="errorMessage" style="color: red;"></p>
-            <div class="mb-3">
-                <label for="gender" class="form-label">Gender</label>
-                <select class="form-select" id="gender" required>
-                    <option value="">Please Select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="N/A">N/A</option>
-                </select>
-            </div>
-            <div class="mb-3 text-center">
-                <h6>Already have an account? <a href="/LOGIN/login.html">Login</a></h6>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-user-plus me-1"></i> Sign Up
-                </button>
-            </div>
-        </form>
-    </div>
-</body>
+<body>
+     <!-- No action attribute so JS handles submission -->
+    <div class="signup-container">
+        <div class="form-section">
+            <h2>Sign Up</h2>
+      <form id="signup" method="POST">
+          <p id="errorMessage" style="color: red;"></p>
+          <div class="mb-3">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" required>
+          </div>
+          <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" required>
+          </div>
+          <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" required>
+          </div>
+          <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" required>
+          </div>
+          <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <select class="form-select" id="gender" required>
+                <option value="">Please Select</option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+                <option value="2">N/A</option>
+            </select>
+        </div>
+          <div class="mb-3 text-center">
+              <h6>Already have an account? <a href="/LOGIN/login.html">Login</a></h6>
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-user-plus me-1"></i> Sign Up
+              </button>
+          </div>
+      </form>
+  </div>
+  <div class="info-section"  style="display:flex; flex-direction:column">
+    <h3>Welcome Aboard!</h3>
+    <div >
+    <p>Join us to experience seamless transactions and effortless shopping.</p>
+    </div>    
+</div>
+</div> 
 
-<script>
-     document.addEventListener("DOMContentLoaded", function() {
-        const passwordField = document.getElementById("password");
-        const confirmPasswordField = document.getElementById("confirmPassword");
-        const errorMessage = document.getElementById("errorMessage");
-        document.getElementById("signup").addEventListener("submit", function(event) {
-            if (passwordField.value !== confirmPasswordField.value) {
-                errorMessage.textContent="Passwords do not match!";
-                event.preventDefault();
-            }
-        });
-        
-     });
-</script>
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const firstNameField = document.getElementById("firstName");
+          const lastNameField = document.getElementById("lastName");
+          const emailField = document.getElementById("email");
+          const passwordField = document.getElementById("password");
+          const confirmPasswordField = document.getElementById("confirmPassword");
+          const genderField = document.getElementById("gender");
+          const errorMessage = document.getElementById("errorMessage");
+
+          console.log("Sign up form loaded.");
+
+          document.getElementById("signup").addEventListener("submit", function(event) {
+              event.preventDefault();  // Prevent default form submission
+              console.log("Form submission intercepted.");
+
+              errorMessage.textContent = ""; // Clear any previous error
+
+              if (passwordField.value !== confirmPasswordField.value) {
+                  errorMessage.textContent = "Passwords do not match!";
+                  console.error("Passwords do not match.");
+                  return;
+              }
+
+              // Build registration data object
+              const registrationData = {
+                  firstName: firstNameField.value,
+                  lastName: lastNameField.value,
+                  email: emailField.value,
+                  password: passwordField.value,
+                  gender: parseInt(genderField.value, 10)
+              };
+
+              console.log("Registration data:", registrationData);
+
+              fetch(window.APP_CONFIG.baseUrl + 'api/v1.0/register', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(registrationData)
+              })
+              .then(response => {
+                  console.log("Received response from registration API:", response);
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  localStorage.setItem("email", emailField.value);
+            
+              })
+              .then(data => {
+                  console.log("Registration successful:", data);
+                  // On success, redirect to the OTP page
+                  window.location.href = "/SE-frontend/otp.html";
+              })
+              .catch(error => {
+                  console.error("Registration failed:", error);
+                  errorMessage.textContent = "Registration failed: " + error.message;
+              });
+          });
+      });
+  </script>
+</body>
 </html>
