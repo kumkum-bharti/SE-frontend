@@ -23,6 +23,19 @@
     font-size: 1.5rem;
     font-weight: bold;
 }
+.logout-btn {
+    background-color: red;  /* solid red background */
+    color: white;           /* white text */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Optional hover effect */
+  .logout-btn:hover {
+    background-color: darkred;
+  }
 
 .user-icon{
     margin-left:3rem;

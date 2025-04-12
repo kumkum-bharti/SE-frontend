@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="../loadConfigs.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Train Search | JetCartStay</title>
@@ -139,7 +140,7 @@
             }
 
             try {
-                const apiUrl = ``; // Add API URL
+                const apiUrl = window.APP_CONFIG.baseUrl+`api/v1.0/trains/`;
                 const response = await fetch(apiUrl, {
                     method: "GET",
                     headers: { "ngrok-skip-browser-warning": "0" }
