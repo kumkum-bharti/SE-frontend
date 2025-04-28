@@ -8,6 +8,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 
+body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            margin: 0;
+        }
+        .login-container {
+            display: flex;
+            width: 800px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .login-form {
+            flex: 1;
+            padding: 50px;
+        }
+        .login-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .login-form .form-control {
+            border-radius: 25px;
+        }
+        .login-form .btn {
+            width: 100%;
+            border-radius: 25px;
+            background: #6a11cb;
+            border: none;
+        }
+        .login-form .btn:hover {
+            background: #2575fc;
+        }
+        .login-image {
+            flex: 1;
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+        }
 
 .password-container {
     position: relative;
@@ -30,6 +78,9 @@
 }
 
 .toggle-password img {
+    position: absolute;
+    top: -1rem;
+    right: 10px;
     width: 20px;
     height: 20px;
     opacity: 0.7;
@@ -42,48 +93,37 @@
 </style>
 
 </head>
-<body style="background: rgb(69,70,64); min-height: 100vh;
-background: linear-gradient(15deg, rgba(69,70,64,1) 0%, rgba(188,163,182,1) 100%, rgba(185,162,182,1) 100%);">
-  <header>
-    <div class="logo">JetCartStay</div>
-      <nav class="navbar">
-     <ul class="navlinks">
-         <li><a href="/HOMEPAGE/home.html">Home</a></li>
-         <li><a href="/">About</a></li>
-         
-     </ul>
-    
-     
- </nav>
-</header>
-    <div class="container" style="max-width: 400px; background-color: #bbd3eb;   margin-top: 10rem; padding: 2rem; line-height: 2rem; border-radius: 25px; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);">
-    <h1 class="text-center">Login</h1>
-    <form  action="/HOMEPAGE/home.html" method="POST">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required >
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3 password-container">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password"  required>
-          <span class="toggle-password">
-            <img id="eye-icon" src="https://cdn-icons-png.flaticon.com/512/709/709612.png" alt="Show Password">
-          </span>
-        </div>
 
-        <div class="mb-3">
-          <h6>Don't have an account? <a href="/SE-frontend/signup.html">Register!</a></p>
-        </div>
-        <div class="text-center">
-        <button type="submit" class="btn btn-primary" onclick="loginUser()" >
-          <i class="fa-solid fa-user me-1"></i>  Login
-        </button>
+</header>
+<div class="login-container">
+    <div class="login-form">
+        <h2>Welcome Back!</h2>
+        <form action="/HOMEPAGE/home.html" method="POST">
+            <div class="mb-3">
+                <input type="email" class="form-control" placeholder="Email Address" required>
+            </div>
+            <div class="mb-3 password-container">
+                <input type="password" class="form-control" placeholder="Password" id="password"  required>
+                <span class="toggle-password">
+                    <img id="eye-icon" src="https://cdn-icons-png.flaticon.com/512/709/709612.png" alt="Show Password">
+                </span>
+            </div> 
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" onclick="loginUser()" >
+                  <i class="fa-solid fa-user me-1"></i>  Login
+                </button>
+            </div>  
+
+            <p class="mt-3 text-center">Don't have an account? <a href="/SE-frontend/signup.html">Register!</a></p>
+
+        </form>
+    </div>
+    <div class="login-image">
+        Welcome Back! <br> Your journey continues here.
     </div>
   </form>
-
-
- </div>
+</div>
+ 
 </body>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -135,5 +175,3 @@ async function loginUser() {
 
 </script>
 </html>
-
-
