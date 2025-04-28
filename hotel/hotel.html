@@ -1,155 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Search | JetCartStay</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Search | JetCartStay</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .navbar {
-            background-color: #eadcf8; /* Purple shade */
-            padding: 15px;
-        }
-        .navbar-brand {
-            color: black !important;
-            font-weight: bold;
-        }
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .navbar {
+      background-color: #eadcf8;
+      padding: 15px;
+    }
+    .navbar-brand {
+      color: black !important;
+      font-weight: bold;
+    }
+    .user-icon {
+      margin-left: 3rem;
+    }
+    .user-icon img {
+      height: 25px;
+      width: 25px;
+    }
+    .hotel-container {
+      margin-top: 20px;
+    }
+    .hotel-card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      overflow: hidden;
+    }
+    .hotel-card:hover {
+      transform: scale(1.02);
+    }
+    .hotel-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .hotel-info {
+      padding: 10px;
+    }
+    .hotel-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .hotel-rating {
+      color: #f39c12;
+      font-size: 14px;
+    }
+    .hotel-price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    .hotel-location {
+      font-size: 15px;
+      color: #6c757d;
+    }
 
-        .user-icon{
-        margin-left:3rem;
-        }
+    .card {
+  border: none;
+  border-radius: 1rem;
+}
 
+.card h4 {
+  font-weight: bold;
+  color: #5e17eb; /* JetCartStay theme color */
+}
 
-        .user-icon img{
-        height: 25px;
-        width: 25px;
-        }
+input::placeholder {
+  color: #aaa;
+}
 
-        .search-bar {
-            max-width: 40%;
-        }
-        .hotel-container {
-            margin-top: 20px;
-        }
-        .hotel-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-            overflow: hidden;
-        }
-        .hotel-card:hover {
-            transform: scale(1.02);
-        }
-        .hotel-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-        .hotel-info {
-            padding: 10px;
-        }
-        .hotel-name {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .hotel-rating {
-            color: #f39c12;
-            font-size: 14px;
-        }
-        .hotel-price {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-        }
-        .hotel-location {
-            font-size: 15px;
-            color: #6c757d;
-        }
+input[type="date"]{
+  font-size: 16px;
+}
 
-        
-    </style>
+input[type="text"]{
+  font-size: 16px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+}
+
+  </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <div class="navbar-brand">JetCartStay</div>
-            <form class="d-flex ms-auto search-bar">
-                <input id="queryInput" class="form-control me-2" type="text" placeholder="Search hotels...">
-                <button type="button" onclick="fetchHotels()" class="btn btn-light">Search</button>
-            </form>
-            <div class="user-icon" id="loginButton">
-                <a href="/LOGIN/login.html" ><img src="https://cdn-icons-png.flaticon.com/128/456/456212.png" alt="User"></a>
-            </div>
-            <button class="btn btn-outline-light ms-3 text-black">Wishlist</button>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div id="results" class="hotel-container row justify-content-center"></div>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <div class="navbar-brand">JetCartStay</div>
+      <div class="user-icon" id="loginButton">
+        <a href="/LOGIN/login.html"><img src="https://cdn-icons-png.flaticon.com/128/456/456212.png" alt="User"></a>
+      </div>
     </div>
+  </nav>
 
-    <script>
-        const defaultHotels = [
-            {
-                "name": "Luxury Grand Hotel",
-                "location": "New York",
-                "price": "$200 per night",
-                "rating": "4.5",
-                "image": "https://cdn.britannica.com/85/67385-050-6903F020/hotels-tourists-Honolulu-Waikiki-Beach.jpg?w=300"
-            },
-            {
-                "name": "Sunset Inn",
-                "location": "Los Angeles",
-                "price": "$150 per night",
-                "rating": "4.2",
-                "image": "https://cdn.britannica.com/96/115096-050-5AFDAF5D/Bellagio-Hotel-Casino-Las-Vegas.jpg?w=300"
-            },
-            {
-                "name": "Cozy Stay Lodge",
-                "location": "San Francisco",
-                "price": "$100 per night",
-                "rating": "4.0",
-                "image": "https://media.istockphoto.com/id/105085031/photo/evening-reflection-in-swimming-pool.jpg?s=2048x2048&w=is&k=20&c=lWn_2IZZCVVORGSCBu83EamVtYViH5kjbFr2qTbJfE0="
-            }
-        ];
+  <div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%; border-radius: 1rem; background-color: #fff;">
+      <h4 class="mb-4 text-center">Find Your Perfect Stay</h4>
+      <form id="hotelSearchForm" onsubmit="event.preventDefault(); fetchData();">
+        <div class="mb-3">
+          <label for="location" class="form-label">📍 Location</label>
+          <input type="text" class="form-control form-control-lg" id="location" placeholder="Enter city or location" required>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="arrival" class="form-label">🛬 Arrival</label>
+            <input type="date" class="form-control form-control-lg" id="arrival" required>
+          </div>
+          <div class="col-md-6">
+            <label for="departure" class="form-label">🛫 Departure</label>
+            <input type="date" class="form-control form-control-lg" id="departure" required>
+          </div>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg">🔍 Search Hotels</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div id="results" class="hotel-container row justify-content-center"></div>
+  </div>
 
-        function fetchHotels() {
-            const resultsContainer = document.getElementById("results");
-            resultsContainer.innerHTML = "";
-            defaultHotels.forEach(hotel => {
-                const div = document.createElement("div");
-                div.classList.add("col-md-6", "col-lg-4"  );
-                div.innerHTML = `
-                    <div class="hotel-card">
-                        <img src="${hotel.image}" alt="Hotel Image">
-                        <div class="hotel-info">
-                            <h5 class="hotel-name">${hotel.name} </h5>
-                            <p class="hotel-location">${hotel.location}</p>
-                            
-                            <p class="hotel-price">${hotel.price}
-                                <span class="hotel-rating">⭐ ${hotel.rating}</span></p>
-                        </div>
-                    </div>
-                `;
-                resultsContainer.appendChild(div);
-            });
+  <script>
+    async function fetchData() {
+      const location = document.getElementById("location").value.trim();
+      const arrivalDate = document.getElementById("arrival").value;
+      console.log(arrivalDate);
+      console.log(location);
+      const departureDate = document.getElementById("departure").value;
+        console.log(departureDate);
+      const resultsContainer = document.getElementById("results");
+
+      resultsContainer.innerHTML = "<p>Loading...</p>";
+
+      if (!location || !arrivalDate || !departureDate) {
+        resultsContainer.innerHTML = "<p>Please fill all fields.</p>";
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://api.example.com/hotels/search?location=${encodeURIComponent(location)}&arrival=${arrivalDate}&departure=${departureDate}`);
+        const data = await response.json();
+
+        if (!data || data.length === 0) {
+          resultsContainer.innerHTML = "<p>No hotels found.</p>";
+          return;
         }
 
-        window.onload = () => {
-            fetchHotels();
-        }
-    </script>
+        resultsContainer.innerHTML = "";
+        data.forEach(hotel => {
+          const div = document.createElement("div");
+          div.classList.add("col-md-6", "col-lg-4");
+          div.innerHTML = `
+            <div class="hotel-card">
+              <img src="${hotel.image}" alt="Hotel Image">
+              <div class="hotel-info">
+                <h5 class="hotel-name">${hotel.name}</h5>
+                <p class="hotel-location">${hotel.location}</p>
+                <p class="hotel-price">${hotel.price} <span class="hotel-rating">⭐ ${hotel.rating || 'N/A'}</span></p>
+              </div>
+            </div>`;
+          resultsContainer.appendChild(div);
+        });
+      } catch (err) {
+        resultsContainer.innerHTML = "<p>Something went wrong. Try again later.</p>";
+      }
+    }
+  </script>
 
 </body>
 </html>
